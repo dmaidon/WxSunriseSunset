@@ -62,18 +62,20 @@ Public Class Form1
 
     Private Sub DisplayInformation()
         ''check to see if the data fetch was successful.  The status will return "OK" if successful.
+        'Dim ab As Date = New DateTime(ssNfo.results.day_length.ToString)
+        Dim ab As String = ssNfo.results.day_length
         If ssNfo.status = "OK" Then
             Try
                 RtbInfo.AppendText($"Sunrise: {ssNfo.results.sunrise.tolocaltime:T}{vbCrLf}")
                 RtbInfo.AppendText($"Sunset: {ssNfo.results.sunset.tolocaltime:T}{vbCrLf}")
                 RtbInfo.AppendText($"Solar Noon: {ssNfo.results.solar_noon.tolocaltime:T}{vbCrLf}")
-                RtbInfo.AppendText($"Length of day: {ssNfo.results.sunrise.tolocaltime:T}{vbCrLf}")
+                RtbInfo.AppendText($"Length of day: {Hour(ab)} hours {Minute(ab)} minutes {Second(ab)} seconds{vbCrLf}")
                 RtbInfo.AppendText($"Civil Twilight Begins: {ssNfo.results.civil_twilight_begin.tolocaltime:T}{vbCrLf}")
                 RtbInfo.AppendText($"Civil Twilight Ends: {ssNfo.results.civil_twilight_end.tolocaltime:T}{vbCrLf}")
-                RtbInfo.AppendText($"Nautical Twilight Ends: {ssNfo.results.nautical_twilight_end.tolocaltime:T}{vbCrLf}")
                 RtbInfo.AppendText($"Nautical Twilight Begins: {ssNfo.results.nautical_twilight_begin.tolocaltime:T}{vbCrLf}")
-                RtbInfo.AppendText($"Astronomical Twilight Ends: {ssNfo.results.astronomical_twilight_end.tolocaltime:T}{vbCrLf}")
+                RtbInfo.AppendText($"Nautical Twilight Ends: {ssNfo.results.nautical_twilight_end.tolocaltime:T}{vbCrLf}")
                 RtbInfo.AppendText($"Astronomical Twilight Begins: {ssNfo.results.astronomical_twilight_begin.tolocaltime:T}{vbCrLf}")
+                RtbInfo.AppendText($"Astronomical Twilight Ends: {ssNfo.results.astronomical_twilight_end.tolocaltime:T}{vbCrLf}")
             Catch ex As Exception
                 MsgBox($"   Error: {ex.Message}{vbCrLf}   Location: {ex.TargetSite.ToString}{vbCrLf}   Trace: { ex.StackTrace.ToString}{vbCrLf}")
             End Try
